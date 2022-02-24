@@ -1,0 +1,70 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-shadow: 0.25em;
+	background-color: hsl(0, 42%, 91%);
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.banner,
+.enterSize {
+	margin: 0.5em;
+	padding: 0.5em;
+	color: hsl(0, 5%, 11%);
+}
+
+#createBttn,
+#clearBttn {
+	padding: 0.75em;
+	margin: 0.75em;
+	border-radius: 0.5em;
+	color: hsl(0, 5%, 11%);
+}
+#inputID {
+	padding: 0.5em;
+	margin: 0.65em;
+	border-radius: 0.5em;
+	font-size: medium;
+	color: hsl(0, 5%, 11%);
+}
+
+#sqContainer {
+	width: 960px;
+	height: 960px;
+	display: grid;
+	border: 0.25em hsl(0, 4%, 27%);
+	padding: 0.25em;
+
+	grid-template-columns: repeat(var(--grid-rows), 1fr);
+	grid-template-rows: repeat(var(--grid-cols), 1fr);
+}
+
+.grid {
+	border: 1px solid hsl(0, 5%, 11%);
+	background-color: hsl(0, 12%, 75%);
+}
+
+/* .grid:hover::before {
+	background-color: hsl(0, 12%, 75%);
+} */
+.grid:hover {
+	background-color: hsl(337.5, 3.17%, 49.41%);
+}
+
+:root {
+	--grid-cols: 1;
+	--grid-rows: 1;
+}
