@@ -25,7 +25,7 @@ function layoutGrid(_grid: Number) {
 	sqCont?.style.setProperty('--grid-rows', _grid.toString())
 	sqCont?.style.setProperty('--grid-cols', _grid.toString())
 	for (let c = 0; c < _grid * _grid; c++) {
-		var cell = document.createElement('div')
+		let cell = document.createElement('div')
 		sqCont?.appendChild(cell).className = 'grid'
 	}
 }

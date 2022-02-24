@@ -62,6 +62,9 @@
 } */
 .grid:hover {
 	background-color: hsl(337.5, 3.17%, 49.41%);
+	-webkit-transition: all ease 0.7s;
+	-moz-transition: all ease 0.7s;
+	transition: all ease 0.7s;
 }
 
 :root {
