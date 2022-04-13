@@ -1,31 +1,35 @@
-const gridState = {
-	grid: '',
-}
+document.addEventListener('DOMContentLoaded', () => {
+	let onceFlag = true
 
-const alertReload = () => {
-	alert('Enter number less than 100')
-	window.location.reload()
-}
+	const log = (i: unknown) => console.log('\n', i)
 
-const createBttn = document.getElementById('createBttn')
+	const form: HTMLFormElement | null = document.querySelector('.form-divGen')
+	const divGenContainer: HTMLDivElement | null =
+		document.querySelector('.container-divGen')
 
-const input = document.getElementById('inputID')
-input?.addEventListener('change', (ev) => {
-	ev.target.value <= 100 ? (gridState.grid = ev.target.value) : alertReload()
-	layoutGrid(Number(gridState.grid))
-})
+	function createDivGen(this: HTMLFormElement, ev: SubmitEvent) {
+		ev.preventDefault()
 
-const clearBttn = document.getElementById('clearBttn')
-clearBttn?.addEventListener('click', () => {
-	window.location.reload()
-})
+		if (onceFlag) {
+			//grab input as string
+			const formData = new FormData(this)
+			const input = formData.get('form-divGen__input')?.toString() ?? ''
+			//style='--grid-rows: input' ...
+			divGenContainer?.style.setProperty('--grid-rows', input)
+			divGenContainer?.style.setProperty('--grid-cols', input)
 
-function layoutGrid(_grid: Number) {
-	const sqCont = document.getElementById('sqContainer')
-	sqCont?.style.setProperty('--grid-rows', _grid.toString())
-	sqCont?.style.setProperty('--grid-cols', _grid.toString())
-	for (let c = 0; c < _grid * _grid; c++) {
-		let cell = document.createElement('div')
-		sqCont?.appendChild(cell).className = 'grid'
+			for (let i = 0; i < Number(input) * Number(input); i++) {
+				const newDiv: HTMLDivElement = document.createElement('div')
+				divGenContainer === null
+					? log('divGenContainer is null')
+					: (divGenContainer.appendChild(newDiv).className = 'genDivs')
+			}
+		}
+		onceFlag = false
 	}
-}
+
+	// function changeColour(this: HTMLDivElement, ev: MouseEvent) {}
+
+	form?.addEventListener('submit', createDivGen)
+	// divGenContainer?.addEventListener('mouseover', changeColour)
+})

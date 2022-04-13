@@ -9,16 +9,26 @@
 		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body class="body">
-		<div class="container"><h1 class="banner">Etch-A-Sketch</h1></div>
-		<div class="container">
-			<h3 class="enterSize">Enter grid size (max: 100)</h3>
+		<div class="container-all">
+			<h1 class="title">Etch-A-Sketch</h1>
+
+			<form action="#" class="form-divGen">
+				<label for="form-divGen__input" class="form-divGen__label"></label>
+				<input
+					type="number"
+					class="form-divGen__input"
+					autofocus="true"
+					max="100"
+					min="10"
+					name="form-divGen__input"
+					id="form-divGen__input"
+					placeholder="Enter number of grids"
+				/>
+				<button class="form-divGen__bttn">Generate</button>
+			</form>
+
+			<div class="container-divGen"></div>
 		</div>
-		<div class="container">
-			<input type="text" name="gridInput" id="inputID" />
-			<button type="button" name="createButton" id="createBttn">Enter</button>
-			<button type="button" name="clearButton" id="clearBttn">Clear</button>
-		</div>
-		<div id="sqContainer"></div>
 		<script src="./script.js" defer></script>
 	</body>
 </html>
