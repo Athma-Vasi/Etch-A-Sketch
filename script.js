@@ -4,19 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const log = (i) => console.log('\n', i);
     const form = document.querySelector('.form-divGen');
     const divGenContainer = document.querySelector('.container-divGen');
+    const bttnClearCanvas = document.querySelector('.form-divGen__bttn-reset');
     function createDivGen(ev) {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
         ev.preventDefault();
         if (onceFlag) {
             const formData = new FormData(this);
-            const inputNum = (_b = (_a = formData.get('form-divGen__input-num')) === null || _a === void 0 ? void 0 : _a.toString()) !== null && _b !== void 0 ? _b : '';
-            const inputColor = (_d = (_c = formData.get('form-divGen__input-colorGrid')) === null || _c === void 0 ? void 0 : _c.toString()) !== null && _d !== void 0 ? _d : '';
-            const inputBkgd = (_f = (_e = formData.get('form-divGen__input-colorBkd')) === null || _e === void 0 ? void 0 : _e.toString()) !== null && _f !== void 0 ? _f : '';
-            const inputBrush = (_h = (_g = formData.get('form-divGen__input-colorBrush')) === null || _g === void 0 ? void 0 : _g.toString()) !== null && _h !== void 0 ? _h : '';
-            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-rows', inputNum);
-            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-cols', inputNum);
-            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-bkgd', inputBkgd);
-            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-brush', inputBrush);
+            const inputNum = formData.get('form-divGen__input-num')?.toString() ?? '';
+            const inputColor = formData.get('form-divGen__input-colorGrid')?.toString() ?? '';
+            const inputBkgd = formData.get('form-divGen__input-colorBkd')?.toString() ?? '';
+            const inputBrush = formData.get('form-divGen__input-colorBrush')?.toString() ?? '';
+            divGenContainer?.style.setProperty('--grid-rows', inputNum);
+            divGenContainer?.style.setProperty('--grid-cols', inputNum);
+            divGenContainer?.style.setProperty('--grid-bkgd', inputBkgd);
+            divGenContainer?.style.setProperty('--grid-brush', inputBrush);
             for (let i = 0; i < Number(inputNum) * Number(inputNum); i++) {
                 const newDiv = document.createElement('div');
                 if (divGenContainer === null) {
@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         onceFlag = false;
     }
-    // function changeColour(this: HTMLDivElement, ev: MouseEvent) {}
-    form === null || form === void 0 ? void 0 : form.addEventListener('submit', createDivGen);
-    // divGenContainer?.addEventListener('mouseover', changeColour)
+    function clearCanvas() {
+        window.location.reload();
+    }
+    form?.addEventListener('submit', createDivGen);
+    bttnClearCanvas?.addEventListener('click', clearCanvas);
 });

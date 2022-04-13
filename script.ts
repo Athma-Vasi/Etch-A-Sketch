@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	const form: HTMLFormElement | null = document.querySelector('.form-divGen')
 	const divGenContainer: HTMLDivElement | null =
 		document.querySelector('.container-divGen')
+	const bttnClearCanvas: HTMLButtonElement | null = document.querySelector(
+		'.form-divGen__bttn-reset'
+	)
 
 	function createDivGen(this: HTMLFormElement, ev: SubmitEvent) {
 		ev.preventDefault()
@@ -36,8 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		onceFlag = false
 	}
 
-	// function changeColour(this: HTMLDivElement, ev: MouseEvent) {}
+	function clearCanvas() {
+		window.location.reload()
+	}
 
 	form?.addEventListener('submit', createDivGen)
-	// divGenContainer?.addEventListener('mouseover', changeColour)
+	bttnClearCanvas?.addEventListener('click', clearCanvas)
 })

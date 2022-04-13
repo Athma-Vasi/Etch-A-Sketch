@@ -11,13 +11,13 @@ html {
 :root {
 	--grid-rows: 1;
 	--grid-cols: 1;
-	--grid-color: '';
-	--grid-bkgd: '';
-	--grid-brush: '';
+	--grid-color: '#ff9ebc';
+	--grid-bkgd: '#ce9eff';
+	--grid-brush: '#9effa7';
 	/* colors */
 	--clr-bkgd: hsl(270, 100%, 98.5%);
 	--clr-def: hsl(270, 100%, 50%);
-	--clr-def-light: hsl(270, 100%, 80.9%);
+	--clr-def-light: hsl(270, 100%, 81%);
 	--clr-def-dark: hsl(270, 61.8%, 19.1%);
 	--clr-shadow-light: hsl(270, 61.8%, 97%);
 	--clr-shadow-dark: hsl(270, 38.2%, 80.9%);
@@ -27,7 +27,7 @@ html {
 	height: 100vh;
 	width: 828px;
 	background-color: var(--clr-bkgd);
-
+	font-family: sans-serif;
 	color: var(--clr-def-dark);
 }
 
@@ -41,6 +41,7 @@ html {
 		'title title'
 		'canvas palette'
 		'footer footer';
+	gap: 5px;
 }
 
 .title {
@@ -57,7 +58,7 @@ html {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: stretch;
 }
 
 .brush,
@@ -68,11 +69,7 @@ html {
 	justify-content: center;
 	align-items: center;
 	margin: 1rem 0%;
-}
-
-.form-divGen__input-num {
-	width: 158.1px;
-	margin: 1rem 0px 2rem 0px;
+	text-align: center;
 }
 
 .container-divGen {
@@ -110,17 +107,24 @@ html {
 }
 
 .bttn {
+	align-self: center;
+	font-family: inherit;
 	outline: none;
 	border: none;
 	width: 120.8px;
 	height: 3rem;
-	border-radius: 3rem;
+	font-size: 1rem;
+	border-radius: 5rem;
+	margin-bottom: 2rem;
 	background-color: var(--clr-bkgd);
 	box-shadow: -1.6px -2.6px 2.6px var(--clr-shadow-light),
 		-2.6px -4.2px 4.2px var(--clr-shadow-light),
 		-4.2px -6.9px 6.9px var(--clr-shadow-light), 1.6px 2.6px 2.6px var(--clr-shadow-dark),
 		2.6px 4.2px 4.2px var(--clr-shadow-dark), 4.2px 6.9px 6.9px var(--clr-shadow-dark);
-	color: var(--clr-dark);
+	color: var(--clr-def--dark);
+	text-shadow: -1px -1.6px 1.6px var(--clr-shadow-light),
+		1px 1.6px 1.6px var(--clr-shadow-dark);
+	transition: all 146ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .bttn:active {
@@ -130,7 +134,65 @@ html {
 		inset 1.6px 2.6px 2.6px var(--clr-shadow-dark),
 		inset 2.6px 4.2px 4.2px var(--clr-shadow-dark),
 		inset 4.2px 6.9px 6.9px var(--clr-shadow-dark);
+
+	text-shadow: inset -1px -1.6px 1.6px var(--clr-shadow-light),
+		inset 1px 1.6px 1.6px var(--clr-shadow-dark);
+	color: var(--clr-def-dark);
 }
+
+.input-colorBrush,
+.input-colorBkd,
+.input-colorGrid {
+	outline: none;
+	border: none;
+	border-radius: 0.5rem;
+	height: 2rem;
+	box-shadow: -1.6px -2.6px 2.6px var(--clr-shadow-light),
+		-2.6px -4.2px 4.2px var(--clr-shadow-light),
+		-4.2px -6.9px 6.9px var(--clr-shadow-light), 1.6px 2.6px 2.6px var(--clr-shadow-dark),
+		2.6px 4.2px 4.2px var(--clr-shadow-dark), 4.2px 6.9px 6.9px var(--clr-shadow-dark);
+	transition: all 146ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.input-colorBrush:active,
+.input-colorBkd:active,
+.input-colorGrid:active {
+	box-shadow: inset -1.6px -2.6px 2.6px var(--clr-shadow-light),
+		inset -2.6px -4.2px 4.2px var(--clr-shadow-light),
+		inset -4.2px -6.9px 6.9px var(--clr-shadow-light),
+		inset 1.6px 2.6px 2.6px var(--clr-shadow-dark),
+		inset 2.6px 4.2px 4.2px var(--clr-shadow-dark),
+		inset 4.2px 6.9px 6.9px var(--clr-shadow-dark);
+}
+
+.input-num {
+	width: 158.1px;
+	padding-left: 14.6%;
+	margin: 1rem 18.7px 2rem 18.7px;
+	border: none;
+	outline: none;
+	background-color: var(--clr-bkgd);
+	height: 3em;
+	font-size: 1rem;
+	color: var(--clr-def-dark);
+	border-radius: 0.5rem;
+	transition: all 146ms cubic-bezier(0.19, 1, 0.22, 1);
+	box-shadow: -1.6px -2.6px 2.6px var(--clr-shadow-light),
+		-2.6px -4.2px 4.2px var(--clr-shadow-light),
+		-4.2px -6.9px 6.9px var(--clr-shadow-light), 1.6px 2.6px 2.6px var(--clr-shadow-dark),
+		2.6px 4.2px 4.2px var(--clr-shadow-dark), 4.2px 6.9px 6.9px var(--clr-shadow-dark);
+}
+
+.input-num:hover,
+.input-num:focus {
+	box-shadow: inset -1.6px -2.6px 2.6px var(--clr-shadow-light),
+		inset -2.6px -4.2px 4.2px var(--clr-shadow-light),
+		inset -4.2px -6.9px 6.9px var(--clr-shadow-light),
+		inset 1.6px 2.6px 2.6px var(--clr-shadow-dark),
+		inset 2.6px 4.2px 4.2px var(--clr-shadow-dark),
+		inset 4.2px 6.9px 6.9px var(--clr-shadow-dark);
+}
+
 /* @keyframes hover {
   0% {
     // normal styles
@@ -152,4 +214,4 @@ html {
 .class:hover {
   animation-fill-mode: forwards;
   animation-play-state: running;
-} */
+} */ ;
