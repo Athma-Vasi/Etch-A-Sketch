@@ -5,20 +5,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.form-divGen');
     const divGenContainer = document.querySelector('.container-divGen');
     function createDivGen(ev) {
-        var _a, _b;
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         ev.preventDefault();
         if (onceFlag) {
-            //grab input as string
             const formData = new FormData(this);
-            const input = (_b = (_a = formData.get('form-divGen__input')) === null || _a === void 0 ? void 0 : _a.toString()) !== null && _b !== void 0 ? _b : '';
-            //style='--grid-rows: input' ...
-            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-rows', input);
-            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-cols', input);
-            for (let i = 0; i < Number(input) * Number(input); i++) {
+            const inputNum = (_b = (_a = formData.get('form-divGen__input-num')) === null || _a === void 0 ? void 0 : _a.toString()) !== null && _b !== void 0 ? _b : '';
+            const inputColor = (_d = (_c = formData.get('form-divGen__input-colorGrid')) === null || _c === void 0 ? void 0 : _c.toString()) !== null && _d !== void 0 ? _d : '';
+            const inputBkgd = (_f = (_e = formData.get('form-divGen__input-colorBkd')) === null || _e === void 0 ? void 0 : _e.toString()) !== null && _f !== void 0 ? _f : '';
+            const inputBrush = (_h = (_g = formData.get('form-divGen__input-colorBrush')) === null || _g === void 0 ? void 0 : _g.toString()) !== null && _h !== void 0 ? _h : '';
+            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-rows', inputNum);
+            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-cols', inputNum);
+            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-bkgd', inputBkgd);
+            divGenContainer === null || divGenContainer === void 0 ? void 0 : divGenContainer.style.setProperty('--grid-brush', inputBrush);
+            for (let i = 0; i < Number(inputNum) * Number(inputNum); i++) {
                 const newDiv = document.createElement('div');
-                divGenContainer === null
-                    ? log('divGenContainer is null')
-                    : (divGenContainer.appendChild(newDiv).className = 'genDivs');
+                if (divGenContainer === null) {
+                    log('divGenContainer is null');
+                }
+                else {
+                    divGenContainer.appendChild(newDiv).className = 'genDivs';
+                    newDiv.style.setProperty('--grid-color', inputColor);
+                }
             }
         }
         onceFlag = false;

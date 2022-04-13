@@ -11,18 +11,26 @@ document.addEventListener('DOMContentLoaded', () => {
 		ev.preventDefault()
 
 		if (onceFlag) {
-			//grab input as string
 			const formData = new FormData(this)
-			const input = formData.get('form-divGen__input')?.toString() ?? ''
-			//style='--grid-rows: input' ...
-			divGenContainer?.style.setProperty('--grid-rows', input)
-			divGenContainer?.style.setProperty('--grid-cols', input)
+			const inputNum = formData.get('form-divGen__input-num')?.toString() ?? ''
+			const inputColor = formData.get('form-divGen__input-colorGrid')?.toString() ?? ''
+			const inputBkgd = formData.get('form-divGen__input-colorBkd')?.toString() ?? ''
+			const inputBrush = formData.get('form-divGen__input-colorBrush')?.toString() ?? ''
 
-			for (let i = 0; i < Number(input) * Number(input); i++) {
+			divGenContainer?.style.setProperty('--grid-rows', inputNum)
+			divGenContainer?.style.setProperty('--grid-cols', inputNum)
+			divGenContainer?.style.setProperty('--grid-bkgd', inputBkgd)
+			divGenContainer?.style.setProperty('--grid-brush', inputBrush)
+
+			for (let i = 0; i < Number(inputNum) * Number(inputNum); i++) {
 				const newDiv: HTMLDivElement = document.createElement('div')
-				divGenContainer === null
-					? log('divGenContainer is null')
-					: (divGenContainer.appendChild(newDiv).className = 'genDivs')
+
+				if (divGenContainer === null) {
+					log('divGenContainer is null')
+				} else {
+					divGenContainer.appendChild(newDiv).className = 'genDivs'
+					newDiv.style.setProperty('--grid-color', inputColor)
+				}
 			}
 		}
 		onceFlag = false

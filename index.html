@@ -13,18 +13,57 @@
 			<h1 class="title">Etch-A-Sketch</h1>
 
 			<form action="#" class="form-divGen">
-				<label for="form-divGen__input" class="form-divGen__label"></label>
-				<input
-					type="number"
-					class="form-divGen__input"
-					autofocus="true"
-					max="100"
-					min="10"
-					name="form-divGen__input"
-					id="form-divGen__input"
-					placeholder="Enter number of grids"
-				/>
-				<button class="form-divGen__bttn">Generate</button>
+				<!--  -->
+				<div class="brush">
+					<label for="form-divGen__input-colorBrush" class="form-divGen__input-colorBrush"
+						>Brush</label
+					>
+					<input
+						type="color"
+						class="form-divGen__input-colorBrush"
+						id="form-divGen__input-colorBrush"
+						name="form-divGen__input-colorBrush"
+					/>
+				</div>
+
+				<div class="bkgd">
+					<label for="form-divGen__input-colorBkd" class="form-divGen__input-colorBkd"
+						>Background</label
+					>
+					<input
+						type="color"
+						class="form-divGen__input-colorBkd"
+						name="form-divGen__input-colorBkd"
+						id="form-divGen__input-colorBkd"
+					/>
+				</div>
+
+				<div class="grid">
+					<label for="form-divGen__input-colorGrid" class="form-divGen__label-colorGrid"
+						>Grid</label
+					>
+					<input
+						type="color"
+						class="form-divGen__input-colorGrid"
+						name="form-divGen__input-colorGrid"
+						id="form-divGen__input-colorGrid"
+					/>
+				</div>
+
+				<div class="num">
+					<label for="form-divGen__input-num" class="form-divGen__label-num"></label>
+					<input
+						type="number"
+						class="form-divGen__input-num"
+						autofocus="true"
+						max="64"
+						min="8"
+						name="form-divGen__input-num"
+						id="form-divGen__input-num"
+						placeholder="Enter grids"
+					/>
+				</div>
+				<button class="bttn form-divGen__bttn">Generate</button>
 			</form>
 
 			<div class="container-divGen"></div>
