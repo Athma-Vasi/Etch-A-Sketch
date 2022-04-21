@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.form-divGen');
     const divGenContainer = document.querySelector('.container-divGen');
     const bttnClearCanvas = document.querySelector('.form-divGen__bttn-reset');
+    const bttnRandom = document.querySelector('.form-divGen__bttn-random');
     function createDivGen(ev) {
         ev.preventDefault();
         if (onceFlag) {
@@ -13,16 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputColor = formData.get('form-divGen__input-colorGrid')?.toString() ?? '';
             const inputBkgd = formData.get('form-divGen__input-colorBkd')?.toString() ?? '';
             const inputBrush = formData.get('form-divGen__input-colorBrush')?.toString() ?? '';
+            log(inputBkgd);
             divGenContainer?.style.setProperty('--grid-rows', inputNum);
             divGenContainer?.style.setProperty('--grid-cols', inputNum);
             divGenContainer?.style.setProperty('--grid-bkgd', inputBkgd);
             divGenContainer?.style.setProperty('--grid-brush', inputBrush);
             for (let i = 0; i < Number(inputNum) * Number(inputNum); i++) {
                 const newDiv = document.createElement('div');
-                if (divGenContainer === null) {
-                    log('divGenContainer is null');
-                }
-                else {
+                if (divGenContainer) {
                     divGenContainer.appendChild(newDiv).className = 'genDivs';
                     newDiv.style.setProperty('--grid-color', inputColor);
                 }
@@ -33,6 +32,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function clearCanvas() {
         window.location.reload();
     }
+    function createRandom(ev) {
+        ev.preventDefault();
+        const randInputFN = () => Math.floor(Math.random() * 64);
+        const randInput = randInputFN().toString();
+        const randHue = () => Math.floor(Math.random() * 360).toString();
+        const randSaturation = () => Math.floor(Math.random() * 100).toString();
+        const randLightness = () => Math.floor(Math.random() * 100).toString();
+        const randAlpha = () => Math.floor(Math.random() * 100).toString();
+        const randHSLAFN = () => `hsla(${randHue()},${randSaturation()}%,${randLightness()}%,${randAlpha()}%)`;
+        const randHSLA = randHSLAFN();
+        if (onceFlag) {
+            //
+            divGenContainer?.style.setProperty('--grid-rows', randInput);
+            divGenContainer?.style.setProperty('--grid-cols', randInput);
+            divGenContainer?.style.setProperty('--grid-bkgd', randHSLAFN());
+            divGenContainer?.style.setProperty('--grid-brush', randHSLAFN());
+            for (let i = 0; i < Number(randInput) * Number(randInput); i++) {
+                const newDiv = document.createElement('div');
+                if (divGenContainer) {
+                    divGenContainer.appendChild(newDiv).className = 'genDivs';
+                    newDiv.style.setProperty('--grid-color', randHSLA);
+                }
+            }
+        }
+        onceFlag = false;
+    }
     form?.addEventListener('submit', createDivGen);
     bttnClearCanvas?.addEventListener('click', clearCanvas);
+    bttnRandom?.addEventListener('click', createRandom);
 });
