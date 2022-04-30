@@ -1,7 +1,6 @@
 "use strict";
 document.addEventListener('DOMContentLoaded', () => {
     let onceFlag = true;
-    const log = (i) => console.log('\n', i);
     const form = document.querySelector('.form-divGen');
     const divGenContainer = document.querySelector('.container-divGen');
     const bttnClearCanvas = document.querySelector('.form-divGen__bttn-reset');
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const inputColor = formData.get('form-divGen__input-colorGrid')?.toString() ?? '';
             const inputBkgd = formData.get('form-divGen__input-colorBkd')?.toString() ?? '';
             const inputBrush = formData.get('form-divGen__input-colorBrush')?.toString() ?? '';
-            log(inputBkgd);
             divGenContainer?.style.setProperty('--grid-rows', inputNum);
             divGenContainer?.style.setProperty('--grid-cols', inputNum);
             divGenContainer?.style.setProperty('--grid-bkgd', inputBkgd);
@@ -40,20 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const randSaturation = () => Math.floor(Math.random() * 100).toString();
         const randLightness = () => Math.floor(Math.random() * 100).toString();
         const randAlpha = () => Math.floor(Math.random() * 100).toString();
-        const randHSLAFN = () => `hsla(${randHue()},${randSaturation()}%,${randLightness()}%,${randAlpha()}%)`;
-        const randHSLA = randHSLAFN();
+        const randHslaFN = () => `hsla(${randHue()},${randSaturation()}%,${randLightness()}%,${randAlpha()}%)`;
+        const randHsla = randHslaFN();
         if (onceFlag) {
-            //
             divGenContainer?.style.setProperty('--grid-rows', randInput);
             divGenContainer?.style.setProperty('--grid-cols', randInput);
-            divGenContainer?.style.setProperty('--grid-bkgd', randHSLAFN());
-            divGenContainer?.style.setProperty('--grid-brush', randHSLAFN());
+            divGenContainer?.style.setProperty('--grid-bkgd', randHslaFN());
+            // divGenContainer?.style.setProperty('--grid-brush', randHslaFN())
             for (let i = 0; i < Number(randInput) * Number(randInput); i++) {
                 const newDiv = document.createElement('div');
                 if (divGenContainer) {
                     divGenContainer.appendChild(newDiv).className = 'genDivs';
-                    newDiv.style.setProperty('--grid-color', randHSLA);
+                    newDiv.style.setProperty('--grid-color', randHsla);
                 }
+                newDiv.addEventListener('mouseover', () => {
+                    newDiv.style.setProperty('--grid-brush', randHslaFN());
+                });
             }
         }
         onceFlag = false;

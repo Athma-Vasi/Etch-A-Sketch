@@ -38,7 +38,7 @@ html {
 	width: auto;
 	display: grid;
 	grid-template-columns: 76.4% 23.6%;
-	grid-template-rows: 14.6% 76.4% 9%;
+	grid-template-rows: 14.6% 76.4% 10%;
 	grid-template-areas:
 		'title title'
 		'canvas palette'
@@ -202,25 +202,8 @@ label {
 	outline: none;
 }
 
-/* @keyframes hover {
-  0% {
-    // normal styles
-  }
-  100% {
-    // hover styles
-  }
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
-
-.class {
-  animation-name: hover;
-  animation-duration: 1ms;
-  animation-fill-mode: backwards;
-  animation-play-state: paused;      
-}
-
-.class:active,
-.class:focus,
-.class:hover {
-  animation-fill-mode: forwards;
-  animation-play-state: running;
-} */

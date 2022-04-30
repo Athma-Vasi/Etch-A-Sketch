@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 	let onceFlag = true
 
-	const log = (i: unknown) => console.log('\n', i)
-
 	const form: HTMLFormElement | null = document.querySelector('.form-divGen')
 	const divGenContainer: HTMLDivElement | null =
 		document.querySelector('.container-divGen')
@@ -23,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			const inputBkgd = formData.get('form-divGen__input-colorBkd')?.toString() ?? ''
 			const inputBrush = formData.get('form-divGen__input-colorBrush')?.toString() ?? ''
 
-			log(inputBkgd)
 			divGenContainer?.style.setProperty('--grid-rows', inputNum)
 			divGenContainer?.style.setProperty('--grid-cols', inputNum)
 			divGenContainer?.style.setProperty('--grid-bkgd', inputBkgd)
@@ -56,24 +53,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		const randLightness = () => Math.floor(Math.random() * 100).toString()
 		const randAlpha = () => Math.floor(Math.random() * 100).toString()
 
-		const randHSLAFN = () =>
+		const randHslaFN = () =>
 			`hsla(${randHue()},${randSaturation()}%,${randLightness()}%,${randAlpha()}%)`
-		const randHSLA = randHSLAFN()
+		const randHsla = randHslaFN()
 
 		if (onceFlag) {
-			//
 			divGenContainer?.style.setProperty('--grid-rows', randInput)
 			divGenContainer?.style.setProperty('--grid-cols', randInput)
-			divGenContainer?.style.setProperty('--grid-bkgd', randHSLAFN())
-			divGenContainer?.style.setProperty('--grid-brush', randHSLAFN())
+			divGenContainer?.style.setProperty('--grid-bkgd', randHslaFN())
+			// divGenContainer?.style.setProperty('--grid-brush', randHslaFN())
 
 			for (let i = 0; i < Number(randInput) * Number(randInput); i++) {
 				const newDiv: HTMLDivElement = document.createElement('div')
 
 				if (divGenContainer) {
 					divGenContainer.appendChild(newDiv).className = 'genDivs'
-					newDiv.style.setProperty('--grid-color', randHSLA)
+					newDiv.style.setProperty('--grid-color', randHsla)
 				}
+
+				newDiv.addEventListener('mouseover', () => {
+					newDiv.style.setProperty('--grid-brush', randHslaFN())
+				})
 			}
 		}
 		onceFlag = false
