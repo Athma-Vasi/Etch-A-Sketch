@@ -2,6 +2,10 @@
 
 This project is designed to teach DOM manipulation by building a browser version of a cross between a sketchpad and an Etch-A-Sketch
 
+#### View project at:
+
+**[Click me to view the project](https://athma-vasi.github.io/Etch-A-Sketch/)**
+
 ## What did I learn?
 
 **TL;DR**
